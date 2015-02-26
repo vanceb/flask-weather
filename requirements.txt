@@ -1,0 +1,7 @@
+markupsafe
+itsdangerous
+Jinja2
+Werkzeug
+flask
+pymongo
+mongokit
