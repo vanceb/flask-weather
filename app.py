@@ -1,12 +1,13 @@
 from flask import Flask, g, request
 from mongokit import Connection
-
+from os import environ
 from bp.logger import logger
 
-MONGODB_HOST = 'localhost'
-MONGODB_PORT = 27017
+# Get MongoDB config from Docker environment variables
+MONGODB_HOST = environ['MONGODB_PORT_27017_TCP_ADDR']
+MONGODB_PORT = int(environ['MONGODB_PORT_27017_TCP_PORT'])
 
-DEBUG = False
+DEBUG = True
 
 # Create the app and register Blueprints
 app = Flask(__name__)
@@ -53,4 +54,4 @@ def teardown_connection(exception):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
