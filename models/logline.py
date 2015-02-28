@@ -14,6 +14,8 @@ class Logline(Document):
         'humidity': float,
         'light': int
     }
+    display_fields = ['logtime', 'inT1', 'inT2', 'inT3', 'outT', 'pressure', 'humidity', 'light']
+    field_names = ['Time', "Internal Temp 1 (C)", "Internal Temp 2 (C)", "Internal Temp 3 (C)", "External Temp (C)", "Atmospheric Pressure (mb)", "Humidity (%)", "Ambient Light"]
     required_fields = ['logtime']
     default_values = {
         'logtime': datetime.utcnow

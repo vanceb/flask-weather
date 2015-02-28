@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+    <table>
+        <tr>
+        {% for heading in display['headings'] %}
+        <th class='entry_header'>{{ heading }}</th>
+        {% endfor %}
+        </tr>
+        {% for entry in entries %}
+        <tr class="{{ loop.cycle('data_odd', 'data_even')}}">
+            {% for column in display['columns'] %}
+            <td class="data">{{ entry[column] }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr><td>No data</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

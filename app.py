@@ -3,9 +3,14 @@ from mongokit import Connection
 from os import environ
 from bp.logger import logger
 
-# Get MongoDB config from Docker environment variables
-MONGODB_HOST = environ['MONGODB_PORT_27017_TCP_ADDR']
-MONGODB_PORT = int(environ['MONGODB_PORT_27017_TCP_PORT'])
+try:
+    # Get MongoDB config from Docker environment variables
+    MONGODB_HOST = environ['MONGODB_PORT_27017_TCP_ADDR']
+    MONGODB_PORT = int(environ['MONGODB_PORT_27017_TCP_PORT'])
+except:
+    # Use defaults instead
+    MONGODB_HOST = 'localhost'
+    MONGODB_PORT = 27017
 
 DEBUG = True
 

@@ -1,0 +1,31 @@
+body {
+    font-family: sans-serif;
+}
+table, tr, td, th {
+    border-spacing:5px;
+    border:1px gray;
+}
+
+th, td{
+    padding: 7px, 10px, 10px, 10px;
+}
+th{
+    text-transform: titlecase;
+    border-bottom: 2px solid #111111;
+    border-top: 1px solid #999;
+}
+tr:hover{
+    background-color: #c3e6e5;
+}
+td.entry_header {
+    text-align: center;
+}
+.data{
+    text-align: right
+}
+tr.data_even {
+    background-color: #FFF
+}
+tr.data_odd {
+    background-color: #EEE
+}
