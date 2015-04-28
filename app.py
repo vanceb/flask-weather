@@ -2,6 +2,8 @@ from flask import Flask, g, request
 from mongokit import Connection
 from os import environ
 from bp.logger import logger
+from reverseproxy import ReverseProxied
+
 
 try:
     # Get MongoDB config from Docker environment variables
@@ -16,6 +18,7 @@ DEBUG = True
 
 # Create the app and register Blueprints
 app = Flask(__name__)
+app.wsgi_app = ReverseProxied(app.wsgi_app)
 app.debug = DEBUG
 app.config.from_object(__name__)
 app.register_blueprint(logger)
