@@ -10,11 +10,11 @@ Create a webapp that can receive weather reading updates, summarize the data, an
 
 #### Create the data container
 
-    sudo docker run -d \
-                    -v /data \
+    sudo docker run -it \
+                    -v /data/db:/data/db \
                     --name data-mongo \
-                    mongo \
-                    mkdir /data/db
+                    --entrypoint /bin/bash \
+                    mongo
 
 #### Create the MongoDB container
 
