@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block body %}
+    <table>
+        <tr>
+        <th class="entry_header">Time</th>
+        {% for heading in display['headings'] %}
+        <th class='entry_header', colspan="4">{{ heading }}</th>
+        {% endfor %}
+        </tr>
+        <tr>
+            <th ></th>
+            {% for heading in display['headings'] %}
+            <th class='entry_header'>count</th><th class='entry_header'>min</th><th class='entry_header'>avg</th><th class='entry_header'>max</th>
+            {% endfor %}
+        </tr>
+
+        {% for entry in entries %}
+        <tr class="{{ loop.cycle('data_odd', 'data_even')}}">
+            <td>{{ entry }}</td>
+            {% for column in display['columns'] %}
+            <td class="data">{{ '{0:0.2f}'.format(entries[entry][column]['count']) }}</td>
+            <td class="data">{{ '{0:0.2f}'.format(entries[entry][column]['min']) }}</td>
+            <td class="data">{{ '{0:0.2f}'.format(entries[entry][column]['avg']) }}</td>
+            <td class="data">{{ '{0:0.2f}'.format(entries[entry][column]['max']) }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr><td>No data</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

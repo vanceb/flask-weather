@@ -2,6 +2,7 @@ from flask import Flask, g, request
 from mongokit import Connection
 from os import environ
 from bp.logger import logger
+from bp.summary import summary
 from reverseproxy import ReverseProxied
 
 try:
@@ -21,6 +22,7 @@ app.wsgi_app = ReverseProxied(app.wsgi_app)
 app.debug = DEBUG
 app.config.from_object(__name__)
 app.register_blueprint(logger)
+app.register_blueprint(summary)
 
 # Global variable to hold the MongoClient connection
 db = None

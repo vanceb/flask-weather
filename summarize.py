@@ -17,6 +17,48 @@ class Summarize():
             for field in dataDict:
                 self.data[key][field] = [dataDict[field]]
 
+    def summarize(self, key=None, field=None):
+        result = {}
+        if key == None:
+            for k in self.data:
+                result[k] = {}
+                if field == None:
+                    for f in self.data[k]:
+                        summary = self._summarizeArray(k,f)
+                        if summary != None:
+                            result[k][f] = summary
+                else:
+                    if field in self.data[k]:
+                        summary = self._summarizeArray(k,field)
+                        if summary != None:
+                            result[k][field] = summary
+        else:
+            if key in self.data:
+                result[key] = {}
+                if field == None:
+                    for f in self.data[key]:
+                        summary = self._summarizeArray(key,f)
+                        if summary != None:
+                            result[key][f] = summary
+                else:
+                    if field in self.data[key]:
+                        summary = self._summarizeArray(key,field)
+                        if summary != None:
+                            result[key][field] = summary
+        return result
+
+    def _summarizeArray(self, key, field):
+        anyData = self._countNumArray(key, field)
+        if anyData:
+            result = {}
+            result['count'] = anyData
+            result['max'] = self._maxArray(key,field)
+            result['min'] = self._minArray(key,field)
+            result['avg'] = self._avgArray(key,field)
+            return result
+        else:
+            return None
+
     def max(self, key=None, field=None):
         result = {}
         if key == None:
@@ -156,6 +198,10 @@ class Summarize():
                         if v != None:
                             result.append(v)
         return result
+
+    def _countNumArray(self, key, field):
+        return len(self._numArray(key, field))
+
 
     def _maxArray(self, key, field):
         result = None
