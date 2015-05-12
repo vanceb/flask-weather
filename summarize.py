@@ -1,3 +1,5 @@
+import operator
+
 class Summarize():
     def __init__(self):
         self.data = {}
@@ -45,7 +47,7 @@ class Summarize():
                         summary = self._summarizeArray(key,field)
                         if summary != None:
                             result[key][field] = summary
-        return result
+        return sorted(result.items(), key=operator.itemgetter(0))
 
     def _summarizeArray(self, key, field):
         anyData = self._countNumArray(key, field)
