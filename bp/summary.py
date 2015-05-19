@@ -27,6 +27,6 @@ def latestSummary(period, maxResults):
         result['logtime'] = datetime.strftime(result.pop('logtime'), '%Y-%m-%dT%H:%M:%SZ')
         data.logData(tag, result)
     #return jsonify({'status': 'OK', 'results': data.summarize()})
-    display = {'headings': ["in T1", "In T2", "In T3", "Out T", "Pressure", "Humidity", "Light"], \
-               'columns': ["inT1", "inT2", "inT3", "outT", "pressure", "humidity", "light"]}
+    display = {'headings': ["in T1", "In T2", "In T3", "Out T", "Pressure", "Humidity", "Light", "Battery Voltage", "Solar Voltage"], \
+               'columns': ["inT1", "inT2", "inT3", "outT", "pressure", "humidity", "light", "battery", "solar"]
     return render_template("summary-table.html", entries=data.summarize(), display=display)
